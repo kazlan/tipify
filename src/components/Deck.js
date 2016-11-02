@@ -34,7 +34,7 @@ class Deck extends Component {
         console.log('back')
         this.setState({
             //hand: this.state.stack[this.state.stack.lenght-1],
-            hand: this.state.stack.slice(-1)[0],
+                hand: this.state.stack.slice(-1)[0],
             stack: this.state.stack.slice(0,-1)
         })
     }
