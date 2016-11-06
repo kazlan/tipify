@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "create-react-app": "^0.6.0",
+    "firebase": "^3.5.3",
     "global": "^4.3.1",
     "material-ui": "^0.16.0",
     "react": "^15.3.2",

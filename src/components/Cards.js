@@ -25,7 +25,7 @@ class Cards extends Component {
         const {cards} = this.props
         let hand = cards.hands[cards.cursor]
         return (
-            <List onKeyUp={this.checkKeyPress.bind(this)}>
+            <List onKeyUp={this.checkKeyPress.bind(this)} >
                 {
                 hand.map((card,idx)=>{
                     return card.sub !== undefined
