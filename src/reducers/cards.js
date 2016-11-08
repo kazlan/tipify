@@ -2,25 +2,13 @@
 const SELECT_HAND = 'SELECT_HAND'
 const RESET_HAND = "RESET_HAND"
 const ADD_CARD = "ADD_CARD"
+const REMOVE_CARD = "REMOVE_CARD"
 const INIT_DATA = "INIT_DATA"
 
 const InitialState = {
     cursor: 0,
     next_available_index: 2,
-    hands: [
-        [
-            {type: "link", title: "Provision", sub: 1},
-            {type: "text", title: "Net"},
-            {type: "text", title: "Voz"},
-            {type: "text", title: "NGTV"}
-        ],
-        [
-            {type: "link", title: "subprov", sub: 0},
-            {type: "text", title: "tecnico",desc: "Tecnico no acude a cita. Escalo caso a provisión."},
-            {type: "text", title: "retraso",desc: "retraso técnico"},
-            {type: "text", title: "voz ko",desc: "Instalación reciente. Teléfono todavía inactivo. En consola aparece pendiente."}
-        ]
-    ]
+    hands: [[]]
 }
 const cards = (state=InitialState, {type, payload})=>{
     switch(type){
@@ -54,6 +42,17 @@ const cards = (state=InitialState, {type, payload})=>{
                             ...state.hands.slice(state.cursor+1),[]]
                     })
             return out
+        case REMOVE_CARD:
+            return Object.assign({}, state,{
+                cursor: state.cursor,
+                hands: [
+                    ...state.hands.slice(0, state.cursor),
+                    state.hands[state.cursor].filter(item=>item.title!==payload.title),
+                    ...state.hands.slice(state.cursor+1)
+                ]
+
+            })
+
         case INIT_DATA:
             return Object.assign({}, state, {
                 hands: payload.hands,

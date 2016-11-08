@@ -53,7 +53,6 @@ class EditBox extends Component {
                     hintText="Título" 
                     fullWidth={true} 
                     onChange={(e)=>{this.temp_item.title = e.target.value;this.checkValidity()}}
-                    ref={input=>input&&input.focus()}
                 />
                 <TextField 
                     hintText="Descripción"

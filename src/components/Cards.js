@@ -9,6 +9,11 @@ class Cards extends Component {
     followLink(id){
         this.props.dispatch({type: "SELECT_HAND", payload: id})
     }
+    removeCard(card){
+        this.props.dispatch({type: "REMOVE_CARD", payload: card})
+        this.props.dispatch({type: "SAVE_DATA"})
+
+    }
     showData(text){
         prompt("Texto a copiar",text)
     }
@@ -34,12 +39,14 @@ class Cards extends Component {
                             card={card} 
                             key={idx} 
                             onClick={()=>this.followLink(card.sub)} 
+                            onRemove={()=>this.removeCard(card)}
                         />                    
                     :
                         <DataCard 
                             card={card}
                             key={idx}
                             onClick={()=>this.showData(card.desc|| card.title)}
+                            onRemove={()=>this.removeCard(card)}
                         />
                 }
                     
