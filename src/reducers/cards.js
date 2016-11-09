@@ -39,7 +39,7 @@ const cards = (state=InitialState, {type, payload})=>{
                             state.hands[state.cursor].concat(
                                 Object.assign({},payload, {sub: state.next_available_index++})
                             ),
-                            ...state.hands.slice(state.cursor+1),[]]
+                            ...state.hands.slice(state.cursor+1),[[]]]
                     })
             return out
         case REMOVE_CARD:
