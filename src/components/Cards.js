@@ -28,7 +28,9 @@ class Cards extends Component {
     }
     render() {
         const {cards} = this.props
+        console.log(cards)
         let hand = cards.hands[cards.cursor]
+        console.log(hand)
         return (
             <List onKeyUp={this.checkKeyPress.bind(this)} >
                 {
