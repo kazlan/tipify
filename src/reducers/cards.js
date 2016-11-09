@@ -7,7 +7,7 @@ const INIT_DATA = "INIT_DATA"
 
 const InitialState = {
     cursor: 0,
-    next_available_index: 2,
+    next_available_index: 1,
     hands: [[]]
 }
 const cards = (state=InitialState, {type, payload})=>{
@@ -54,11 +54,15 @@ const cards = (state=InitialState, {type, payload})=>{
             })
 
         case INIT_DATA:
-            return Object.assign({}, state, {
-                hands: payload.hands,
-                cursor: 0,
-                next_available_index: payload.next_available_index
-            })
+            if (payload) {
+                return Object.assign({}, state, {
+                    hands: payload.hands,
+                    cursor: 0,
+                    next_available_index: payload.next_available_index
+                })
+            }else{
+                return state
+            }
 
         case "TEST":
             console.log("en test")
