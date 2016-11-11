@@ -14,6 +14,10 @@ class Cards extends Component {
         this.props.dispatch({type: "SAVE_DATA"})
 
     }
+    editCard(card, idx){
+        this.props.dispatch({type: "EDIT_CARD", payload: {card, idx}})
+        this.props.dispatch({type: "SAVE_DATA"})
+    }
     showData(text){
         prompt("Texto a copiar",text)
     }
@@ -42,6 +46,7 @@ class Cards extends Component {
                             key={idx} 
                             onClick={()=>this.followLink(card.sub)} 
                             onRemove={()=>this.removeCard(card)}
+                            onEdit={()=>this.editCard(card,idx)}
                         />                    
                     :
                         <DataCard 
@@ -49,6 +54,7 @@ class Cards extends Component {
                             key={idx}
                             onClick={()=>this.showData(card.desc|| card.title)}
                             onRemove={()=>this.removeCard(card)}
+                            onEdit={()=>this.editCard(card,idx)}
                         />
                 }
                     

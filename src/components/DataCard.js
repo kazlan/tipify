@@ -16,10 +16,10 @@ const iconButtonElement = (
   </IconButton>
 )
 
-const handleMenuClick=(item,removeItemFunc)=>{
+const handleMenuClick=(item,removeItemFunc, editItemFunc)=>{
     switch (item.props.children){
         case "Editar":
-            console.log("edit item")
+            editItemFunc()
             break
         case "Eliminar":
             removeItemFunc()
@@ -31,7 +31,7 @@ const handleMenuClick=(item,removeItemFunc)=>{
 const handleRightIconButton = (ev)=>{
     ev.preventDefault()
 }
-const DataCard=({card, onClick, onRemove}) => {
+const DataCard=({card, onClick, onRemove, onEdit}) => {
     return (
         <ListItem
             primaryText={card.title}
@@ -43,7 +43,7 @@ const DataCard=({card, onClick, onRemove}) => {
             rightIconButton={
                     <IconMenu iconButtonElement={iconButtonElement}
                         onTouchTap={(ev)=>handleRightIconButton(ev)}
-                        onItemTouchTap={(_,item)=>handleMenuClick(item,onRemove)}
+                        onItemTouchTap={(_,item)=>handleMenuClick(item,onRemove, onEdit)}
                         useLayerForClickAway={true}
                     >
                         <MenuItem>Editar</MenuItem>

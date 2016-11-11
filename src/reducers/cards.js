@@ -3,6 +3,7 @@ const SELECT_HAND = 'SELECT_HAND'
 const RESET_HAND = "RESET_HAND"
 const ADD_CARD = "ADD_CARD"
 const REMOVE_CARD = "REMOVE_CARD"
+const EDIT_CARD = "EDIT_CARD"
 const INIT_DATA = "INIT_DATA"
 
 const InitialState = {
@@ -42,6 +43,7 @@ const cards = (state=InitialState, {type, payload})=>{
                             ...state.hands.slice(state.cursor+1),[[]]]
                     })
             return out
+
         case REMOVE_CARD:
             return Object.assign({}, state,{
                 cursor: state.cursor,
@@ -51,6 +53,17 @@ const cards = (state=InitialState, {type, payload})=>{
                     ...state.hands.slice(state.cursor+1)
                 ]
 
+            })
+        // En payload enviamos Obj.Item completo e index en la Hand para modificar
+        case EDIT_CARD:
+            console.log(payload)
+            return Object.assign({},state,{
+                hands: [
+                    ...state.hands.slice(0, state.cursor),
+                    state.hands[state.cursor]
+                        .map((item,idx)=> payload.idx === idx ? payload.card : item ),
+                    ...state.hands.slice(state.cursor+1)
+                ]
             })
 
         case INIT_DATA:
